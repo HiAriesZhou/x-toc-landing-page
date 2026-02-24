@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light mode colors */
+  --color-primary: hsl(192, 50%, 90%);   /* Background - light blue */
+  --color-secondary: hsl(192, 50%, 10%); /* Text - dark blue */
+  --color-tertiary: hsl(252, 80%, 20%); /* Personality - purple */
+  --color-accent: hsl(165, 80%, 40%);   /* Highlights - green */
+
+  --background: var(--color-primary);
+  --foreground: var(--color-secondary);
+}
+
+.dark {
+  /* Dark mode colors */
+  --color-primary: hsl(192, 50%, 10%);   /* Background - dark blue */
+  --color-secondary: hsl(192, 50%, 90%); /* Text - light blue */
+  --color-tertiary: hsl(252, 80%, 80%); /* Personality - light purple */
+  --color-accent: hsl(162, 80%, 60%);   /* Highlights - light green */
 }
 
 @theme inline {
@@ -14,13 +28,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-primary: hsl(192, 50%, 10%);
+    --color-secondary: hsl(192, 50%, 90%);
+    --color-tertiary: hsl(252, 80%, 80%);
+    --color-accent: hsl(132, 80%, 60%);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-primary);
+  color: var(--color-secondary);
   font-family: Arial, Helvetica, sans-serif;
 }
