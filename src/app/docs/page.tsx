@@ -6,7 +6,7 @@ export default function DocsPage() {
   return (
     <div className="min-h-screen bg-[var(--color-primary)] text-[var(--color-secondary)]">
       {/* Header */}
-      <header className="border-b border-[var(--color-secondary)]/20">
+      <header className="sticky top-0 z-50 border-b border-[var(--color-secondary)]/20 backdrop-blur-md bg-[var(--color-primary)]/80">
         <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
