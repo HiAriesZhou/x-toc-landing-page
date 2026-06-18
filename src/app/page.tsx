@@ -1,191 +1,274 @@
-import Link from "next/link";
 import Image from "next/image";
-import { Home, FileText, Github } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpenText,
+  Download,
+  FileDown,
+  Github,
+  Highlighter,
+  Library,
+  LockKeyhole,
+  MousePointer2,
+  PanelRightOpen,
+} from "lucide-react";
+
+const chromeStoreUrl =
+  "https://chromewebstore.google.com/detail/nbdgpckkcfkomnmdefinikjijgljgjfp?utm_source=item-share-cb";
+const extensionRepoUrl = "https://github.com/Aries-0331/x-toc";
+const websiteRepoUrl = "https://github.com/Aries-0331/x-toc-landing-page";
+
+const workflow = [
+  {
+    icon: PanelRightOpen,
+    label: "Navigate",
+    title: "A table of contents for long X articles.",
+    body: "X-TOC detects headings in X/Twitter long-form articles and shows the current article outline in the popup.",
+  },
+  {
+    icon: MousePointer2,
+    label: "Pin",
+    title: "Keep the reading panel where you need it.",
+    body: "Pin the floating TOC panel, drag it to a comfortable spot, and keep your place while reading.",
+  },
+  {
+    icon: Highlighter,
+    label: "Clip",
+    title: "Save selected passages locally.",
+    body: "Select article text, click save to xtoc, and keep the passage with source context in browser extension storage.",
+  },
+  {
+    icon: FileDown,
+    label: "Export",
+    title: "Export clips to open formats.",
+    body: "Review saved clips in Options, then export all or selected clips as Markdown or JSON.",
+  },
+];
+
+const facts = [
+  "Works on X.com and Twitter.com long-form article pages.",
+  "Stores saved clips locally with chrome.storage.local.",
+  "Does not send saved clips to an external server.",
+  "Available from the Chrome Web Store and source repository.",
+];
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[var(--color-primary)] text-[var(--color-secondary)]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[var(--color-secondary)]/20 backdrop-blur-md bg-[var(--color-primary)]/80">
-        <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+    <div className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
+      <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--background)]/88 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
             <Image
               src="/logo.png"
-              alt="X & Twitter TOC"
-              width={32}
-              height={32}
-              className="w-8 h-8"
+              alt="X-TOC"
+              width={36}
+              height={36}
+              className="h-9 w-9"
+              priority
             />
-            <span className="text-lg font-bold">X & Twitter TOC</span>
+            <span className="truncate text-lg font-semibold tracking-[0.01em]">
+              X-TOC
+            </span>
           </Link>
-          <nav className="flex items-center gap-2">
-            <Link
-              href="/"
-              className="p-2 rounded-full hover:bg-[var(--color-secondary)]/10"
-              title="Home"
-            >
-              <Home className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/docs"
-              className="p-2 rounded-full hover:bg-[var(--color-secondary)]/10"
-              title="Documentation"
-            >
-              <FileText className="w-5 h-5" />
+          <nav className="flex items-center gap-1 sm:gap-2" aria-label="Primary">
+            <Link className="nav-link" href="/docs">
+              Docs
             </Link>
             <a
-              href="https://github.com/Aries-0331/twitter-toc-extension"
+              className="icon-link"
+              href={extensionRepoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-[var(--color-secondary)]/10"
-              title="GitHub"
+              aria-label="Open X-TOC source repository"
+              title="Source"
             >
-              <Github className="w-5 h-5" />
+              <Github className="h-5 w-5" />
             </a>
           </nav>
         </div>
       </header>
 
-      {/* Hero */}
       <main>
-        <section className="py-24 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold tracking-tight mb-6">
-              Navigate X/Twitter Articles with Ease
-            </h2>
-            <p className="text-xl opacity-80 mb-10">
-              X & Twitter Article TOC adds an interactive table of contents to long-form X/Twitter articles.
-              Never lose your place again when reading in-depth content.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <a
-                href="https://chromewebstore.google.com/detail/twitter-toc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-[var(--color-primary)] bg-[var(--color-accent)] hover:opacity-80 rounded-full transition-opacity"
-              >
-                Add to Chrome
-              </a>
-              <a
-                href="/docs"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 rounded-full transition-colors"
-              >
-                Read Docs
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Features */}
-        <section className="py-20 px-6 bg-[var(--color-tertiary)]/10">
-          <div className="max-w-5xl mx-auto">
-            <h3 className="text-2xl font-bold text-center mb-12">
-              Features
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-[var(--color-primary)] p-6 rounded-xl border border-[var(--color-secondary)]/20">
-                <h4 className="font-semibold text-lg mb-3">Automatic Detection</h4>
-                <p className="opacity-80">
-                  Automatically detects long-form articles and displays the table of contents.
-                </p>
-              </div>
-              <div className="bg-[var(--color-primary)] p-6 rounded-xl border border-[var(--color-secondary)]/20">
-                <h4 className="font-semibold text-lg mb-3">Click to Navigate</h4>
-                <p className="opacity-80">
-                  Click any section in the TOC to smoothly scroll to that part of the article.
-                </p>
-              </div>
-              <div className="bg-[var(--color-primary)] p-6 rounded-xl border border-[var(--color-secondary)]/20">
-                <h4 className="font-semibold text-lg mb-3">Pinnable Panel</h4>
-                <p className="opacity-80">
-                  Pin the TOC panel to keep it visible while reading. Drag to reposition.
-                </p>
+        <section className="hero-grid relative px-5 pb-16 pt-20 sm:px-6 sm:pb-24 sm:pt-24">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_420px] lg:items-center">
+            <div className="min-w-0">
+              <p className="eyebrow mb-5">X / Twitter reading navigation</p>
+              <h1 className="max-w-4xl font-serif text-4xl leading-[1.03] tracking-normal text-[var(--foreground)] sm:text-6xl sm:leading-[0.98] lg:text-7xl">
+                Read long X articles with structure. Save useful passages.
+              </h1>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
+                X-TOC adds a table of contents, a movable reading panel, and
+                lightweight local clipping to X/Twitter long-form articles.
+              </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a
+                  className="primary-button"
+                  href={chromeStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Add to Chrome
+                  <Download className="h-4 w-4" />
+                </a>
+                <Link className="secondary-button" href="/docs">
+                  Read docs
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* How it Works */}
-        <section className="py-20 px-6">
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-center mb-12">
-              How It Works
-            </h3>
-            <div className="space-y-8">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-[var(--color-accent)] text-[var(--color-primary)] rounded-full flex items-center justify-center font-bold">
-                  1
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Visit an X/Twitter Article</h4>
-                  <p className="opacity-80">
-                    Open any long-form X/Twitter article (X/Twitter Articles feature).
-                  </p>
-                </div>
+            <div className="reader-panel min-w-0" aria-label="X-TOC reading preview">
+              <div className="reader-topbar">
+                <span />
+                <span />
+                <span />
               </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-[var(--color-accent)] text-[var(--color-primary)] rounded-full flex items-center justify-center font-bold">
-                  2
+              <div className="reader-content">
+                <div className="article-lines">
+                  <span className="line strong" />
+                  <span className="line" />
+                  <span className="line short" />
+                  <span className="clip-highlight">save to xtoc</span>
+                  <span className="line" />
+                  <span className="line medium" />
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Click the Extension Icon</h4>
-                  <p className="opacity-80">
-                    Click the X & Twitter TOC icon in your browser toolbar to see the table of contents.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-[var(--color-accent)] text-[var(--color-primary)] rounded-full flex items-center justify-center font-bold">
-                  3
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Navigate with Ease</h4>
-                  <p className="opacity-80">
-                    Click any section to smoothly scroll to that part of the article.
-                  </p>
-                </div>
+                <aside className="toc-panel">
+                  <p>Article TOC</p>
+                  <ol>
+                    <li className="active">Opening idea</li>
+                    <li>Context</li>
+                    <li>Key passage</li>
+                    <li>Takeaway</li>
+                  </ol>
+                </aside>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Support / Star Us */}
-        <section className="py-20 px-6 bg-[var(--color-tertiary)]/10">
-          <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl font-bold mb-4">
-              Enjoying X & Twitter Article TOC?
-            </h3>
-            <p className="opacity-80 mb-8">
-              If you find this extension helpful, please consider starring our GitHub repository.
-              Your support helps open-source projects grow and motivates continued development.
-            </p>
-            <a
-              href="https://github.com/Aries-0331/twitter-toc-extension"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-[var(--color-primary)] bg-[var(--color-accent)] hover:opacity-80 rounded-full transition-opacity"
-            >
-              <Github className="w-5 h-5" />
-              Star on GitHub
-            </a>
+        <section className="border-y border-[var(--line)] bg-[var(--surface)] px-5 py-5 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-4 text-sm text-[var(--muted)] sm:grid-cols-3">
+            <div className="metric">
+              <BookOpenText className="h-4 w-4 text-[var(--accent)]" />
+              <span>TOC popup and pinned floating panel</span>
+            </div>
+            <div className="metric">
+              <Library className="h-4 w-4 text-[var(--accent)]" />
+              <span>Local clips stored in browser extension storage</span>
+            </div>
+            <div className="metric">
+              <FileDown className="h-4 w-4 text-[var(--accent)]" />
+              <span>Markdown and JSON export from Options</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-5 py-20 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="section-heading">
+              <p className="eyebrow">Core workflow</p>
+              <h2>Built for reading first, clipping second.</h2>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+              {workflow.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article className="feature-card" key={item.title}>
+                    <div className="feature-icon">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <p className="feature-label">{item.label}</p>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[var(--ink)] px-5 py-20 text-[var(--paper)] sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <p className="eyebrow dark mb-5">Privacy by default</p>
+              <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
+                Saved clips stay in your browser unless you export them.
+              </h2>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--paper-muted)]">
+                X-TOC is a browser extension for current-page reading and local
+                clipping. It does not send saved clips to an external server.
+              </p>
+            </div>
+            <div className="boundary-grid">
+              <div>
+                <PanelRightOpen className="h-5 w-5" />
+                <h3>Popup</h3>
+                <p>Shows the table of contents for the current long-form article.</p>
+              </div>
+              <div>
+                <Highlighter className="h-5 w-5" />
+                <h3>Article page</h3>
+                <p>Provides the floating TOC and save button for selected text.</p>
+              </div>
+              <div>
+                <Library className="h-5 w-5" />
+                <h3>Options</h3>
+                <p>Lists saved clips and supports selected or full export.</p>
+              </div>
+              <div>
+                <LockKeyhole className="h-5 w-5" />
+                <h3>Storage</h3>
+                <p>Uses browser extension storage for saved clip data.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-5 py-20 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div className="section-heading">
+              <p className="eyebrow">Public facts</p>
+              <h2>Small extension, clear boundaries.</h2>
+              <p>
+                X-TOC focuses on long-form X/Twitter articles. It is not a
+                general web clipper, note-taking app, or external storage
+                service.
+              </p>
+            </div>
+            <ul className="principle-list">
+              {facts.map((fact) => (
+                <li key={fact}>
+                  <span />
+                  {fact}
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[var(--color-secondary)]/20 py-8 px-6">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm opacity-60">
-            &copy; 2026 X & Twitter Article TOC. All rights reserved.
-          </p>
-          <div className="flex gap-4">
+      <footer className="border-t border-[var(--line)] px-5 py-8 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 X-TOC. Reading navigation and lightweight clipping.</p>
+          <div className="flex flex-wrap gap-4">
+            <Link className="footer-link" href="/docs">
+              Docs
+            </Link>
             <a
-              href="https://github.com/Aries-0331/twitter-toc-extension"
+              className="footer-link"
+              href={extensionRepoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm opacity-60 hover:opacity-100"
             >
-              GitHub
+              Extension source
+            </a>
+            <a
+              className="footer-link"
+              href={websiteRepoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Website source
             </a>
           </div>
         </div>
