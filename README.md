@@ -16,8 +16,8 @@
 
 This repository contains the public landing page and public docs for X-TOC.
 
-- Extension source: <https://github.com/Aries-0331/x-toc>
-- Website source: <https://github.com/Aries-0331/x-toc-landing-page>
+- Extension source: <https://github.com/HiAriesZhou/x-toc>
+- Website source: <https://github.com/HiAriesZhou/x-toc-landing-page>
 - Chrome Web Store: <https://chromewebstore.google.com/detail/nbdgpckkcfkomnmdefinikjijgljgjfp?utm_source=item-share-cb>
 
 ## Public Product Copy

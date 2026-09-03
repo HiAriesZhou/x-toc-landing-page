@@ -15,8 +15,8 @@ import {
 
 const chromeStoreUrl =
   "https://chromewebstore.google.com/detail/nbdgpckkcfkomnmdefinikjijgljgjfp?utm_source=item-share-cb";
-const extensionRepoUrl = "https://github.com/Aries-0331/x-toc";
-const websiteRepoUrl = "https://github.com/Aries-0331/x-toc-landing-page";
+const extensionRepoUrl = "https://github.com/HiAriesZhou/x-toc";
+const websiteRepoUrl = "https://github.com/HiAriesZhou/x-toc-landing-page";
 
 const workflow = [
   {
