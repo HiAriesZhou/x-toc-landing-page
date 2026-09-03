@@ -16,8 +16,8 @@
 
 本仓库用于维护 X-TOC 的公开 landing page 和公开文档。
 
-- 扩展源码：<https://github.com/Aries-0331/x-toc>
-- 网站源码：<https://github.com/Aries-0331/x-toc-landing-page>
+- 扩展源码：<https://github.com/HiAriesZhou/x-toc>
+- 网站源码：<https://github.com/HiAriesZhou/x-toc-landing-page>
 - Chrome Web Store：<https://chromewebstore.google.com/detail/nbdgpckkcfkomnmdefinikjijgljgjfp?utm_source=item-share-cb>
 
 ## 公开产品文案

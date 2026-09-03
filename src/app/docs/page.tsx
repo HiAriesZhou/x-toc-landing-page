@@ -14,8 +14,8 @@ import {
 
 const chromeStoreUrl =
   "https://chromewebstore.google.com/detail/nbdgpckkcfkomnmdefinikjijgljgjfp?utm_source=item-share-cb";
-const extensionRepoUrl = "https://github.com/Aries-0331/x-toc";
-const websiteRepoUrl = "https://github.com/Aries-0331/x-toc-landing-page";
+const extensionRepoUrl = "https://github.com/HiAriesZhou/x-toc";
+const websiteRepoUrl = "https://github.com/HiAriesZhou/x-toc-landing-page";
 
 const capabilities = [
   "Detect headings in X/Twitter long-form articles.",
@@ -238,7 +238,7 @@ export default function DocsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                github.com/Aries-0331/x-toc
+                github.com/HiAriesZhou/x-toc
               </a>
             </article>
             <article className="doc-card">
@@ -251,7 +251,7 @@ export default function DocsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                github.com/Aries-0331/x-toc-landing-page
+                github.com/HiAriesZhou/x-toc-landing-page
               </a>
             </article>
           </div>
