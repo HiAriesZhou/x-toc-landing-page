@@ -17,6 +17,7 @@ const chromeStoreUrl =
   "https://chromewebstore.google.com/detail/nbdgpckkcfkomnmdefinikjijgljgjfp?utm_source=item-share-cb";
 const extensionRepoUrl = "https://github.com/HiAriesZhou/x-toc";
 const websiteRepoUrl = "https://github.com/HiAriesZhou/x-toc-landing-page";
+const projectStoryUrl = "https://www.arieszhou.com/projects/x-toc";
 
 const workflow = [
   {
@@ -251,6 +252,14 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 X-TOC. Reading navigation and lightweight clipping.</p>
           <div className="flex flex-wrap gap-4">
+            <a
+              className="footer-link"
+              href={projectStoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Project story
+            </a>
             <Link className="footer-link" href="/docs">
               Docs
             </Link>
