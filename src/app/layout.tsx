@@ -2,9 +2,24 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "X-TOC | X/Twitter Reading and Clipping",
+  metadataBase: new URL("https://x-toc.vercel.app"),
+  title: {
+    default: "X-TOC | Navigate and Clip X Articles",
+    template: "%s | X-TOC",
+  },
   description:
-    "X-TOC adds a table of contents, a movable reading panel, and lightweight local clipping to X/Twitter long-form articles.",
+    "Jump between sections in long X articles, save useful passages locally, and export your clips as Markdown or JSON.",
+  openGraph: {
+    title: "X-TOC | Navigate and Clip X Articles",
+    description: "Keep article structure visible. Save useful passages locally.",
+    type: "website",
+    siteName: "X-TOC",
+  },
+  twitter: {
+    card: "summary",
+    title: "X-TOC | Navigate and Clip X Articles",
+    description: "Keep article structure visible. Save useful passages locally.",
+  },
 };
 
 export default function RootLayout({
