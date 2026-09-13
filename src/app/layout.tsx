@@ -14,9 +14,20 @@ export const metadata: Metadata = {
     description: "Keep article structure visible. Save useful passages locally.",
     type: "website",
     siteName: "X-TOC",
+    images: [{
+      url: "/images/x-toc-social-1280x640.png",
+      width: 1280,
+      height: 640,
+      type: "image/png",
+      alt: "X-TOC demo: navigate an article with a floating table of contents and save selected passages locally.",
+    }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    images: [{
+      url: "/images/x-toc-social-1280x640.png",
+      alt: "X-TOC demo: navigate an article with a floating table of contents and save selected passages locally.",
+    }],
     title: "X-TOC | Navigate and Clip X Articles",
     description: "Keep article structure visible. Save useful passages locally.",
   },
