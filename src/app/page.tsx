@@ -8,9 +8,9 @@ const websiteRepoUrl = "https://github.com/HiAriesZhou/x-toc-landing-page";
 const projectStoryUrl = "https://www.arieszhou.com/projects/x-toc";
 
 const workflow = [
-  { number: "01", icon: BookOpenText, title: "See the shape of the article.", body: "Open the popup or pin the movable contents panel beside the article. Jump to any detected heading without losing the reading thread." },
+  { number: "01", icon: BookOpenText, title: "See the shape of the article.", body: "Open the popup or pin the collapsible contents panel beside the article. Jump to any detected heading, then move or resize the panel to fit your reading space." },
   { number: "02", icon: Highlighter, title: "Keep a passage with context.", body: "Select text and choose Save to X-TOC. The clip keeps its article, author when available, timestamp, and surrounding text." },
-  { number: "03", icon: Library, title: "Find it and take it with you.", body: "Open Saved clips to search by text, title, author, tag, or note. Export selected clips or the full library as Markdown or JSON." },
+  { number: "03", icon: Library, title: "Find it and take it with you.", body: "Open Saved clips from the popup or pinned panel. Search by text, title, author, tag, or note, then export selected clips or the full library as Markdown or JSON." },
 ];
 
 export default function HomePage() {
@@ -53,13 +53,13 @@ export default function HomePage() {
                 <span className="browser-address">X Article + X-TOC</span>
                 <span className="browser-note">Chrome Web Store preview</span>
               </div>
-              <Image src="/screenshots/chrome-store-screenshot-1280x800.png" alt="X-TOC keeping an article outline beside a long X article and offering a local Save to X-TOC action" width={1280} height={800} className="store-screenshot" priority />
+              <Image src="/screenshots/chrome-store-screenshot-1280x800.png" alt="X-TOC keeping a collapsible article outline beside a long X article and offering a local Save to X-TOC action" width={1280} height={800} className="store-screenshot" priority />
             </div>
           </div>
         </section>
 
         <section className="proof-strip" aria-label="Supported workflow">
-          <div className="site-shell proof-grid"><span>X.com and Twitter.com articles</span><span>Popup and floating contents</span><span>Markdown and JSON export</span></div>
+          <div className="site-shell proof-grid"><span>X.com and Twitter.com articles</span><span>Popup and pinned contents</span><span>Markdown and JSON export</span></div>
         </section>
 
         <section className="workflow-section">

@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 const steps = [
   { icon: BookOpenText, title: "1. Open a supported article", body: "Visit a long-form article on X.com or Twitter.com. X-TOC detects headings when the article provides them." },
-  { icon: BookOpenText, title: "2. Navigate its headings", body: "Open the extension popup for the current outline. Pin the floating contents panel when you want the structure beside the article; drag or resize it to fit your reading space." },
+  { icon: BookOpenText, title: "2. Navigate its headings", body: "Open the extension popup for the current outline. Pin the collapsible contents panel when you want the structure beside the article; drag or resize it to fit your reading space." },
   { icon: Highlighter, title: "3. Save a passage", body: "Select useful article text and choose Save to X-TOC. The passage is stored with its article, timestamp, surrounding context, and author when available." },
-  { icon: Library, title: "4. Open Saved clips", body: "Choose Saved clips in the extension popup. Search your library, add tags or notes, delete clips, and select the passages you want to export." },
+  { icon: Library, title: "4. Open Saved clips", body: "Choose Saved clips in the extension popup or pinned contents panel. Search your library, add tags or notes, delete clips, and select the passages you want to export." },
 ];
 
 export default function DocsPage() {
