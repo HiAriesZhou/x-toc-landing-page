@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
+import { DM_Sans, Libre_Caslon_Display } from "next/font/google";
 import "./globals.css";
+
+const uiFont = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-ui",
+  display: "swap",
+});
+
+const displayFont = Libre_Caslon_Display({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://x-toc.vercel.app"),
@@ -47,7 +61,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body>{children}</body>
+      <body className={`${uiFont.variable} ${displayFont.variable}`}>{children}</body>
     </html>
   );
 }
