@@ -1,11 +1,6 @@
-import type { Metadata } from "next";
 import { XtocExperience } from "@/components/xtoc-experience";
-
-export const metadata: Metadata = {
-  title: "Docs",
-  description: "How to navigate X articles, save passages, organize clips, and export Markdown or JSON with X-TOC.",
-};
-
-export default function DocsPage() {
+import { pageMetadata } from "@/lib/seo";
+export const metadata = pageMetadata("docs");
+export default function Page() {
   return <XtocExperience initialView="docs" />;
 }

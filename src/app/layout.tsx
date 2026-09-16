@@ -61,7 +61,18 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${uiFont.variable} ${displayFont.variable}`}>{children}</body>
+      <body className={`${uiFont.variable} ${displayFont.variable}`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org", "@type": "SoftwareApplication",
+          "@id": "https://x-toc.vercel.app/#software", name: "X-TOC", alternateName: "xtoc",
+          url: "https://x-toc.vercel.app/", applicationCategory: "BrowserApplication",
+          softwareRequirements: "Desktop Chrome; supported X/Twitter long-form articles",
+          description: "A table of contents for X Articles with local clips, tags, notes, and Markdown or JSON export.",
+          downloadUrl: "https://chromewebstore.google.com/detail/nbdgpckkcfkomnmdefinikjijgljgjfp",
+          sameAs: ["https://github.com/HiAriesZhou/x-toc"],
+        }) }} />
+        {children}
+      </body>
     </html>
   );
 }
