@@ -16,6 +16,7 @@ const docSections = [
   ["workflow", "Use the extension"],
   ["library", "Organize and export"],
   ["boundaries", "Current boundaries"],
+  ["questions", "Common questions"],
   ["links", "Project links"],
 ];
 
@@ -25,7 +26,7 @@ export function DocsMain() {
       <div className="docs-shell">
         <p className="eyebrow">How X-TOC works</p>
         <h1>Read with structure. Keep useful context.</h1>
-        <p>X-TOC is a lightweight, open-source companion for X/Twitter long-form articles. It combines article navigation with a deliberate, local clipping workflow.</p>
+        <p>X-TOC, also written as xtoc, is an open-source browser extension for X (Twitter) Articles. It adds a table of contents and lets you save passages locally with tags and notes, then export them as Markdown or JSON.</p>
         <div className="button-row"><a className="primary-button" href={chromeStoreUrl} target="_blank" rel="noopener noreferrer" aria-label="View X-TOC in the Chrome Web Store; installation requires desktop Chrome"><span className="desktop-cta-copy">Add to Chrome</span><span className="mobile-cta-copy">Available for desktop Chrome</span><Download aria-hidden="true" /></a></div>
       </div>
     </section>
@@ -62,6 +63,19 @@ export function DocsMain() {
       </div>
     </section>
 
+    <section className="docs-section" id="questions">
+      <div className="docs-shell">
+        <p className="eyebrow">Common questions</p>
+        <h2>Before you start</h2>
+        <div className="docs-grid">
+          <article className="doc-card"><h3>Does it work on every X post?</h3><p>No. X-TOC works on supported long-form X/Twitter articles. A table of contents needs headings in the article; it does not turn ordinary posts into structured articles.</p></article>
+          <article className="doc-card"><h3>How do I open the table of contents?</h3><p>Open an article, then select X-TOC in Chrome’s extensions menu. Open the outline in the popup and pin the floating panel to keep it beside the article.</p></article>
+          <article className="doc-card"><h3>Where do my clips go?</h3><p>The extension keeps clips, tags, and notes in local browser storage. It does not upload saved clips or sync them between devices. Use Markdown or JSON export to keep a separate copy.</p></article>
+          <article className="doc-card"><h3>Is this website my clip library?</h3><p>No. This website uses sample content for its interactive demo. Your actual library is in the extension’s Saved clips page.</p></article>
+        </div>
+      </div>
+    </section>
+
     <section className="docs-section" id="links">
       <div className="docs-shell">
         <p className="eyebrow">Project links</p>
@@ -75,7 +89,7 @@ export function DocsMain() {
 export function DocsRail() {
   return <>
     <p className="rail-label">DOCUMENTATION</p>
-    <p className="docs-rail-number">05</p>
+    <p className="docs-rail-number">06</p>
     <h2>Use X-TOC.</h2>
     <p className="docs-rail-intro">A short guide to reading, clipping, and exporting.</p>
     <nav>

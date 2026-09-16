@@ -1,11 +1,6 @@
-import type { Metadata } from "next";
 import { XtocExperience } from "@/components/xtoc-experience";
-
-export const metadata: Metadata = {
-  title: "Saved Clips Demo",
-  description: "Try the X-TOC Saved Clips workflow with local sample content.",
-};
-
-export default function ClipsPage() {
+import { pageMetadata } from "@/lib/seo";
+export const metadata = pageMetadata("clips");
+export default function Page() {
   return <XtocExperience initialView="clips" />;
 }

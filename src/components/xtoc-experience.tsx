@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import type { MouseEvent } from "react";
+import { siteUrl, viewPaths, viewMeta } from "@/lib/seo";
 import {
   ArrowLeft, ArrowRight, BookOpen, Bookmark, Check, ChevronUp, Download,
   FileText, Github, GripVertical, House, List, Play, RotateCcw, Scissors,
@@ -14,19 +17,6 @@ const extensionRepoUrl = "https://github.com/HiAriesZhou/x-toc";
 
 export type View = "home" | "article" | "clips" | "docs";
 
-const viewPaths: Record<View, string> = {
-  home: "/",
-  article: "/article",
-  clips: "/clips",
-  docs: "/docs",
-};
-
-const viewMeta: Record<View, { title: string; description: string }> = {
-  home: { title: "X-TOC | Navigate and Clip X Articles", description: "Navigate long-form X articles, save useful passages, and export local clips with X-TOC." },
-  article: { title: "Interactive Article | X-TOC", description: "Try X-TOC article navigation and local clipping in an interactive demo." },
-  clips: { title: "Saved Clips Demo | X-TOC", description: "Try the X-TOC Saved Clips workflow with local sample content." },
-  docs: { title: "Docs | X-TOC", description: "How to navigate X articles, save passages, organize clips, and export Markdown or JSON with X-TOC." },
-};
 type Clip = {
   id: string;
   articleId: string;
@@ -212,6 +202,15 @@ export function XtocExperience({ initialView }: { initialView: View }) {
   const applyView = useCallback((nextView: View) => {
     document.title = viewMeta[nextView].title;
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", viewMeta[nextView].description);
+    document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute("href", siteUrl + viewPaths[nextView]);
+    document.querySelector<HTMLMetaElement>('meta[name="robots"]')?.setAttribute("content", nextView === "home" || nextView === "docs" ? "index, follow" : "noindex, follow");
+    for (const [selector, content] of [
+      ['meta[property="og:title"]', viewMeta[nextView].title],
+      ['meta[property="og:description"]', viewMeta[nextView].description],
+      ['meta[property="og:url"]', siteUrl + viewPaths[nextView]],
+      ['meta[name="twitter:title"]', viewMeta[nextView].title],
+      ['meta[name="twitter:description"]', viewMeta[nextView].description],
+    ]) document.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", content);
     setView(nextView);
     setSelection("");
     setActiveIndex(0);
@@ -233,6 +232,12 @@ export function XtocExperience({ initialView }: { initialView: View }) {
     applyView(nextView);
     window.scrollTo({ top: 0 });
   }, [applyView, view]);
+
+  const navigateLink = (event: MouseEvent<HTMLAnchorElement>, nextView: View) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    openView(nextView);
+  };
 
   useEffect(() => {
     const handleHistory = () => {
@@ -446,34 +451,29 @@ export function XtocExperience({ initialView }: { initialView: View }) {
       <aside className="site-sidebar">
         <button className="site-brand" onClick={() => openView("home")}><Image src="/logo.png" alt="" width={44} height={44} priority /><span><b>X-TOC</b><small>TOC & Clips for X Articles</small></span></button>
         <nav aria-label="Primary navigation">
-          <button className={view === "home" ? "active" : ""} onClick={() => openView("home")}><House aria-hidden="true" /><span>Home</span></button>
-          <button className={view === "article" ? "active" : ""} onClick={() => openView("article")}><FileText aria-hidden="true" /><span>Article</span></button>
-          <button className={view === "clips" ? "active" : ""} onClick={() => openView("clips")}><Scissors aria-hidden="true" /><span>Clips</span>{userClipCount > 0 && <small>{userClipCount}</small>}</button>
-          <button className={view === "docs" ? "active" : ""} onClick={() => openView("docs")}><BookOpen aria-hidden="true" /><span>Docs</span></button>
+          <a href={viewPaths.home} aria-current={view === "home" ? "page" : undefined} className={view === "home" ? "active" : ""} onClick={(event) => navigateLink(event, "home")}><House aria-hidden="true" /><span>Home</span></a>
+          <a href={viewPaths.article} aria-current={view === "article" ? "page" : undefined} className={view === "article" ? "active" : ""} onClick={(event) => navigateLink(event, "article")}><FileText aria-hidden="true" /><span>Article</span></a>
+          <a href={viewPaths.clips} aria-current={view === "clips" ? "page" : undefined} className={view === "clips" ? "active" : ""} onClick={(event) => navigateLink(event, "clips")}><Scissors aria-hidden="true" /><span>Clips</span>{userClipCount > 0 && <small>{userClipCount}</small>}</a>
+          <a href={viewPaths.docs} aria-current={view === "docs" ? "page" : undefined} className={view === "docs" ? "active" : ""} onClick={(event) => navigateLink(event, "docs")}><BookOpen aria-hidden="true" /><span>Docs</span></a>
         </nav>
         <a className="chrome-cta" href={chromeStoreUrl} target="_blank" rel="noopener noreferrer"><Download aria-hidden="true" />Add to Chrome</a>
         <div className="sidebar-foot"><p>A more focused internet<br />for longer thinking.</p><small>Independent project. Not affiliated with X.</small><a href={extensionRepoUrl} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" /> Source on GitHub</a></div>
       </aside>
 
       <main className={`playground-main view-content${view === "docs" ? " docs-main" : ""}`} key={view}>
-        {view !== "docs" && (view === "clips" ? (
-          <header className="playground-header clips-app-header">
-            <button className="header-back" onClick={() => openView("home")} aria-label="Back to timeline"><ArrowLeft aria-hidden="true" /></button>
-            <h1>Saved Clips</h1>
-            <p>Stored in this browser. Export anytime.</p>
-          </header>
-        ) : (
-          <header className="playground-header">
-            {view === "article" && <button className="header-back" onClick={() => openView("home")} aria-label="Back to timeline"><ArrowLeft aria-hidden="true" /></button>}
-            <div><h1>{view === "home" ? "A timeline for better reading." : "Article"}</h1><p>Interactive demo</p></div>
+        {view !== "docs" && (
+          <header className={`playground-header${view !== "home" ? " detail-header" : ""}`}>
+            {view !== "home" && <Link prefetch={false} className="header-back" href="/" onClick={(event) => navigateLink(event, "home")} aria-label="Back to timeline" title="Back to timeline"><ArrowLeft aria-hidden="true" /></Link>}
+            <div className="page-heading"><h1>{view === "home" ? "A timeline for better reading." : view === "clips" ? "Saved Clips" : "Article"}</h1>{view === "home" && <p>Interactive demo</p>}</div>
+            {view === "clips" && <p className="page-header-note">Stored in this browser. Export anytime.</p>}
             {view === "article" && <button className="mobile-toc-toggle" onClick={() => setTocVisible((current) => !current)} aria-label="Toggle contents panel"><List aria-hidden="true" /></button>}
           </header>
-        ))}
+        )}
 
         {view === "docs" && <DocsMain />}
 
         {view === "home" && <div className="timeline">
-          <article className="feed-post pinned-post"><p className="pinned-label"><Bookmark aria-hidden="true" /> Pinned</p><Image className="post-avatar" src="/logo.png" alt="" width={38} height={38} /><ProductAuthor /><p className="feed-copy">A map for the long reads you never finish.</p><button ref={previewTrigger} className="product-film" onClick={() => setDemoOpen(true)} aria-label="Play the 40-second X-TOC product film"><Image src="/videos/x-toc-poster.jpg" alt="An X article with the X-TOC contents panel open" width={1920} height={1240} priority /><span className="film-play"><Play aria-hidden="true" /></span><span className="film-label">Watch X-TOC in action · 0:40</span></button></article>
+          <article className="feed-post pinned-post"><p className="pinned-label"><Bookmark aria-hidden="true" /> Pinned</p><Image className="post-avatar" src="/logo.png" alt="" width={38} height={38} /><ProductAuthor /><p className="feed-copy">A map for the long reads you never finish.</p><p className="feed-muted">X-TOC (xtoc) adds a table of contents to X Articles. Save passages locally with tags and notes, then export them as Markdown or JSON.</p><button ref={previewTrigger} className="product-film" onClick={() => setDemoOpen(true)} aria-label="Play the 40-second X-TOC product film"><Image src="/videos/x-toc-poster.jpg" alt="An X article with the X-TOC contents panel open" width={1920} height={1240} priority /><span className="film-play"><Play aria-hidden="true" /></span><span className="film-label">Watch X-TOC in action · 0:40</span></button></article>
           <article className="feed-post"><Image className="post-avatar" src="/logo.png" alt="" width={38} height={38} /><ProductAuthor /><p className="feed-copy">A new article on reading with structure.</p><ArticleCover onOpen={() => openView("article")} /></article>
           <article className="feed-post excerpt-post"><span className="post-avatar excerpt-avatar"><Scissors aria-hidden="true" /></span><p className="excerpt-meta">{userClipCount ? "You saved a clip" : "An excerpt worth keeping"} · Demo</p><blockquote>{clips[0]?.text ?? sampleClips[0].text}</blockquote><button className="text-action" onClick={() => openView("clips")}>Open in Clips <ArrowRight aria-hidden="true" /></button></article>
           <article className="feed-post final-post"><Image className="post-avatar" src="/logo.png" alt="" width={38} height={38} /><ProductAuthor /><p className="feed-copy">A small tool for the moments when a long read deserves your full attention.</p><p className="feed-muted">An outline beside the article. Useful passages within reach. That’s X-TOC.</p><a className="text-action" href={chromeStoreUrl} target="_blank" rel="noopener noreferrer">Take it to X <ArrowRight aria-hidden="true" /></a></article>
