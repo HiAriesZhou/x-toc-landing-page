@@ -80,7 +80,7 @@ export function DocsMain() {
       <div className="docs-shell">
         <p className="eyebrow">Project links</p>
         <h2>Source and maintenance</h2>
-        <div className="docs-links"><a href={extensionRepoUrl} target="_blank" rel="noopener noreferrer">Extension source</a><a href={websiteRepoUrl} target="_blank" rel="noopener noreferrer">Website source</a><a href={chromeStoreUrl} target="_blank" rel="noopener noreferrer">Chrome Web Store</a></div>
+        <div className="docs-links"><a href="/privacy">Privacy Policy</a><a href={extensionRepoUrl} target="_blank" rel="noopener noreferrer">Extension source</a><a href={websiteRepoUrl} target="_blank" rel="noopener noreferrer">Website source</a><a href={chromeStoreUrl} target="_blank" rel="noopener noreferrer">Chrome Web Store</a></div>
       </div>
     </section>
   </div>;
